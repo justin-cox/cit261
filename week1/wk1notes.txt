@@ -1,1 +1,84 @@
 Week 1 Notes
+
+Doing Stuff With Web Things
+
+// Store the data
+localStorage.setItem(storyName, storyHTML)
+
+// retrieve the data
+function loadStory(){
+var storyName = document.getElementById(“name_input”).value
+var storyHTML = localStorage.getItem(storyName)
+
+
+// Example of using localStorage
+1 <!doctype html>
+2 <html>
+3 <head>
+4 <title>Group Loop</title>
+5 <script>
+6
+7 function saveNote(){
+8 var currentDateAndTime = new Date()
+9 var aNoteDescription = document.getElementById(“description_input”).value
+10 var aNoteText = document.getElementById(“note_editor”).value
+11 var aCompleteNote = currentDateAndTime.toLocaleString()
++ "--" + aNoteDescription
+12 aCompleteNote += “<p>” + aNoteText + “</p>”
+13
+14 var storedNotesString = localStorage.getItem(“all_notes”)
+15 var allNotes = JSON.parse(storedNotesString)
+16 if(allNotes == null){
+17 allNotes = []
+18 }
+19 allNotes.push(aCompleteNote)
+20 var allNotesString = JSON.stringify(allNotes)
+21 localStorage.setItem(“all_notes”, allNotesString)
+22 }
+23 </script>
+24 <style>
+25
+26 </style>
+27 </head>
+28
+29 <body>
+30 <section id="note_entry_area">
+31 <h1>Note It!</h1>
+32 Description: <input id="description_input"></input>
+33 <textarea id="note_editor" placeholder="Note it down. Don't forget."></textarea>
+34 <button onclick="saveNote()">Save</button>
+35 </section>
+36 <section id="all_notes_display"></section>
+37 </body>
+38 </html>
+
+// load something on page load
+<body onload="showAllNotes()"> // use body style tag instead of this
+
+Video Master Mobile UX
+
+- Design mobile first
+- Mobile devices are replaced every two years because they are used so often.
+- "The simple guidline is whatever you are doing - do mobile first"
+- Makes the product future friendly.
+
+- People don't know what they want until you show it to them.
+- Be useful and be quick
+- Reduce image usage (use SVG/Webfonts)
+- Minify CSS and JS files
+- Gzip files if applicable
+
+- Placement matters (Placement of menu at bottom)
+- Perception matters (use of the work menu)
+
+- Developing on mobile helps with simplicity.
+- Reduce cognitive load.
+- For larger forms, you can use pagination and a progress bar.
+- Autofill should be considered.
+- Autoadvance to the next field.
+- Number pad for numbers.
+- Don't force a copy and paste(<a href="tel:123456789">Number</a>)
+
+- End users shape the market.
+- Stop using pop ups.
+- Keep it simple and unobtrusive.
