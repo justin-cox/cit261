@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Enter a number:<input type='text' id='number'>
+    <button type='button' onclick='getInput()'>Enter</button><br>
+    Enter a second number:<input type='text' id='number2'>
+    <button type='button' onclick='addInputs()'>+</button>
+    <div id='display'></div>
+</body>
+
+<script>
+    function getInput() {
+        let input = document.getElementById('number').value;
+        console.log(input);
+    
+        let display = document.getElementById('display');
+        display.innerHTML = input;
+        let total = addNumbers(input);
+
+        display.innerHTML += '</br>' + total;
+    }
+
+    function addNumbers(number) {
+        let total = 0;
+        for(let i = 1; i <= number; i++) {
+            total += i;
+        }
+        console.log(total);
+        return total;
+    }
+
+    addInputs = () => {
+        const number1 = document.getElementById('number').value;
+        const number2 = document.getElementById('number2').value;
+
+        let display = document.getElementById('display');
+        display.innerHTML += '</br>' + (Number(number1) + Number(number2));
+    }
+
+</script>
+</html>
