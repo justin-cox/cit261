@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .highlight {
+        background-color: red;
+    }
+    </style>
+</head>
+<body>
+    <button type='button'>Event</button>
+    <ul id='roster'>
+        <li class='hero'>Wonder Woman</li>
+        <li>Aquaman</li>
+    </ul>
+
+    <p id='dblclick'>Double click here.</p>
+    <p id='mouseEvent'>Hover Over This!</p>
+</body>
+<script>
+    // Object Methods This
+    user = {
+        name: 'John',
+        age: 30,
+
+        sayHi() {
+            alert(`Hello, my name is ${this.name} and I am ${this.age} years old`);
+        }
+    };
+    user.sayHi();
+
+    // This in JavaScript
+    // This in object construction
+    function Human(age) {
+        this.age = age;
+    }
+
+    let Justin = new Human(26);
+    let Taylor = new Human(23);
+
+    console.log(Justin);
+    console.log(Taylor);
+
+    // This in an object method
+    let o = {
+        sayThis() {
+            console.log(this)
+        }
+    }
+
+    o.sayThis(); // o
+
+    // NOTE: don't use arrow functions when defining methods within an object.
+
+    // get the instance of an object
+    function Human(name) {
+        return {
+            name,
+            getName() {
+                return this.name;
+            }
+        }
+    }
+
+    const zell = new Human('Zell');
+    const vincy = new Human('Vincy');
+
+    console.log(zell.getName());
+
+    // This in arrow functions
+    // using arrow functions within an object mothod allows
+    //    the this context to stay as the object and not Window
+
+    const ob = {
+        doSomethingLater() {
+            setTimeout(() => this.speakLeet(), 1000)
+        },
+        speakLeet() {
+            console.log(`1337 15 4W350M3`)
+        }
+    }
+
+    ob.doSomethingLater();
+
+    // This in event listeners
+    // this is set to the element that fired the event in
+    //   an event listener
+
+    let button = document.querySelector('button');
+    button.addEventListener('click', function() {
+        console.log(this);
+    });
+
+    // Chapter 5 Objects
+    // this refers to the object that it is within.
+    // Generally used inside methods to gain access to the objects properties
+
+    // DATE object
+    const today = new Date();
+    console.log(today.toString());
+
+    // REGEXP used as a find and replace operation
+    const pattern = new RegExp('[a-zA-Z]+ing');
+    console.log(pattern.test('joke')); // false
+    console.log(pattern.test('joking')); // true
+
+    // Chapter 6 DOM
+
+    // DIFFERENT WAYS YOU CAN GRAB ELEMENTS
+    // document.getElementsByTagName('li')
+    // document.getElementsByClassName('class')
+    // document.querySelector('#bats') // finds the first element
+    // document.querySelectorAll('.hero') // finds all the elements
+    // document.getElementById('shoes')
+
+    // ATTRIBUTES
+
+    //wonderWoman.setAttribute('class', 'villian');
+    //wonderWoman.getAttribute('class'); // villian
+
+    // change it back
+    //wonderWoman.className = 'hero';
+
+    // add another class
+    //wonderWoman.classList.add('warrior');
+    //console.log(wonderWoman.className);
+
+    // CREATE ELEMENTS USING A FUNCTION
+    function createElement(tag, text) {
+        const el = document.createElement(tag);
+        el.textContent = text;
+        return el;
+    }
+
+    const flash = createElement('li', 'Flash');
+
+    // ADDING ELEMENTS TO A PAGE
+    const heroes = document.getElementById('roster');
+    heroes.appendChild(flash);
+
+    
+    // Chapter 7 Events
+
+    // first parameter is the type of the event, and the second is the callback function that is invoked
+    //document.body.addEventListener('click', functionName);
+
+    // add event to the whole page
+    //addEventListener('click', () => alert('You clicked!'));
+
+
+    function doSomething(event) {
+        console.log('Something HAPPENED!');
+    }
+
+    // when it comes to the order of events, mouseup and mousedown occur before a click event is fired
+
+    // DOUBLE CLICK EVENTS
+    const dblClickEvent = document.getElementById('dblclick');
+    dblClickEvent.addEventListener('dblclick', highlight);
+
+    function highlight(event) {
+        event.target.classList.toggle('highlight');
+    }
+
+    const mouseEvent = document.getElementById('mouseEvent');
+    mouseEvent.addEventListener('mouseover', highlight);
+    mouseEvent.addEventListener('mouseout', highlight);
+</script>
+
+</html>
