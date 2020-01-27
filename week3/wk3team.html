@@ -29,6 +29,7 @@
 
       const people = [
         'Beck, Glenn',
+        'Adams, John',
         'Becker, Carl',
         'Beckett, Samuel',
         'Beddoes, Mick',
@@ -104,6 +105,8 @@
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
+      const sortByLast = people.sort();
+      console.log(sortByLast);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -123,6 +126,17 @@
         'car',
         'truck'
       ];
+
+      const numInstances = data.reduce(function(obj, transportation) {
+      if (!obj[transportation]) {  // if there is no object that has the number of transportation
+        obj[transportation] = 0;   // set it to zero
+      }
+      obj[transportation]++;       // add one
+      console.log(obj);
+      return obj;
+    }, {});
+
+      console.log(numInstances);
     </script>
   </body>
 </html>
