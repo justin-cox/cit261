@@ -1,0 +1,12 @@
+#todo {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+#add-tasks {
+    display: inline-block;
+    padding: 10px;
+}
+#tasks {
+
+}
