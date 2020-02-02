@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form name='search' action='/search'>
+        <input name='searchInput'>
+        <button type ='submit'>Search</button>
+        <label for='realName'>Real Name:
+            <input type='password' name='realName' id='realName'></label>
+            <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
+    </form>
+
+    <p>Super Powers:</p>
+<label for='flight'>Flight:
+    <input type='checkbox' id='flight' value='Flight' name='powers'>
+</label>
+<label for='strength'>Super Strength:
+    <input type='checkbox' id='strength' value='Strength' name='powers'>
+</label>
+<label for='speed'>Super Speed:
+    <input type='checkbox' id='speed' value='Super Speed' name='powers'>
+</label>
+<label for='energy'>Energy Blasts:
+    <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
+    </label>
+<label for='telekinesis'>Telekinesis:
+    <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
+</label>
+    
+</body>
+<script>
+    // the form element contains form controls like:
+    //   -input fields
+    //   -select menus
+    //   -buttons
+
+    // ACCESSING FORMS
+    // - use document.forms
+    //const form = document.forms[0]; // assigns the form at index 0
+    const fform = document.getElementsByTagName('form')[0];
+    const ffform = document.forms.search; // assigns form with name of 'search'
+    const fffform = document.forms['search']; // best practice
+
+    // FORM PROPERTIES AND METHODS
+    //form.reset() // resets the form
+    //form.action; // send the form to a different URL
+
+    // FORM EVENTS
+    //const input = form.elements.searchInput;
+    //input.addEventListener('change', () => alert('changed'), false);
+
+    // SUBMITTING A FORM
+    const form = document.forms['search'];
+    form.addEventListener('submit', search, false);
+
+    function search() {
+        alert(`You searched for: ${input.value}`);
+        event.preventDefault();
+    }
+
+    // placeholder attribute will insert the value provided until the
+    //     the user enters some text
+
+    // maxlength attribute will limit the number of characters that can be entered
+
+    // INPUT FIELDS
+    // - text
+    // - password
+    // - checkbox (.checked)
+    // - radio
+    // - hidden
+    // - file
+    // - text areas
+    // - buttons
+    //hero.powers = [...form.powers].filter(box => box.checked).map(box => box.value);
+
+    // FORM VALIDATION
+    // - add a required attribute
+    // - you can add custom validation through use of event listeners
+    // - disable submit button until certain fields are filled in
+
+    // CHAPTER 12 OBJECT-ORIENTED PROGRAMMING
+
+    // CONSTRUCTOR FUNCTIONS
+    // object literal notation
+    const dice = {
+        sides: 6,
+        roll() {
+            return Math.floor(this.sides * Math.random() + 1)
+        }
+    }
+
+    // constructor function
+    // const Dice = function(sides=6) {
+    //     this.sides = sides;
+    //     this.roll = function() {
+    //         return Math.floor(this.sides * Math.random() + 1)
+    //     }
+    // } // this represents the object that will be returned
+
+
+    // CLASSES
+    class Dice {
+        constructor(sides=6) {
+            this.sides = sides;
+        }
+
+        roll() {
+            return Math.floor(this.sides * Math.random() + 1)
+        }
+    }
+    const redDice = new Dice();
+    console.log(redDice);
+
+    const blueDice = new Dice(20);
+    // class declarations are preferable to object constructors
+
+    //copy an object
+    const greenDice = new redDice.constructor(10);
+
+    // prototyping is helpful for when you want to add class methods and properties
+    //   after a class declaration.  It should be used to define any properties that 
+    //   will remain the same for every instance of the class.
+
+    // MODULAR
+    // you can import other methods and objects from other files using import and export
+
+</script>
+</html>
