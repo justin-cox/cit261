@@ -3,10 +3,25 @@
     align-items: center;
     padding: 10px;
 }
+
 #add-tasks {
     display: inline-block;
-    padding: 10px;
+    padding-left: 50px;
 }
 #tasks {
+    width: 400px;
+}
 
+.remaining {
+    height: 30px;
+    width: 300px;
+    line-height: 30px;
+    border: solid black;
+    background: lightgray;
+    display: inline-block;
+}
+
+.completed {
+    background: green;
+    text-decoration: line-through;
 }
