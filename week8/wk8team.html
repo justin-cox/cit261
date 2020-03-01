@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 Team Assignment</title>
+</head>
+<body>
+    <div id='results'></div>
+</body>
+<script>
+const url = 'https://swapi.co/api/people';
+
+// get the url where the json data is stored
+fetch(url)
+.then( function(response) {
+    if(response.ok) {
+        return response;
+    }
+    throw Error(response.statusText);
+})
+.then( response => {
+    // return the response into workable json format
+    return response.json();
+})
+.then( data => {
+    // log the data to make sure we got it ok
+    console.log(data);
+
+    // figure out what the next url is for when the user clicks the next button to show the next page results
+    let nextURL = data.next;
+
+    // grab the div that will be displaying the data
+    let people = document.getElementById('results');
+
+    // loop through the data and append it to the div
+    for(let i = 0; i < data.results.length; i++) {
+        people.innerHTML += 
+        `
+        <p>${data.results[i].name}</p>
+        <ul>
+            <li>${data.results[i].height}</li>
+            <li>${data.results[i].mass}</li>
+            <li>${data.results[i].hair_color}</li>
+            <li>${data.results[i].skin_color}</li>
+        </ul>
+        `
+    }
+    // create a button that when clicked, it will take the user to the next page results
+    people.innerHTML += `<button type='button' onclick="requestPage('${nextURL}')">Next Page</button>`
+})
+.catch( error => console.log('There was an error!'))
+
+// function that gets called when user clicks Next Page button
+function requestPage(url) {
+    console.log('Next url is: ' + url);
+
+    // do the same thing over again
+    fetch(url)
+    .then( function(response) {
+    if(response.ok) {
+        return response;
+    }
+        throw Error(response.statusText);
+    })
+    .then( response => {
+        return response.json();
+    })
+    .then( data => {
+        console.log(data);
+        // assign the next url
+        let nextURL = data.next;
+
+        // now we have a previous url... assign it!!
+        let prevURL = data.previous;
+        
+        let people = document.getElementById('results');
+        people.innerHTML = '';
+    for(let i = 0; i < data.results.length; i++) {
+        people.innerHTML += 
+        `
+        <p>${data.results[i].name}</p>
+        <ul>
+            <li>${data.results[i].height}</li>
+            <li>${data.results[i].mass}</li>
+            <li>${data.results[i].hair_color}</li>
+            <li>${data.results[i].skin_color}</li>
+        </ul>
+        `
+    }
+    // add buttons for previous page and next page
+    people.innerHTML += `<button type='button' onclick="requestPage('${prevURL}')">Previous Page</button>`
+    people.innerHTML += `<button type='button' onclick="requestPage('${nextURL}')">Next Page</button>`
+})
+.catch( error => console.log('There was an error!'))
+}
+</script>
+</html>
