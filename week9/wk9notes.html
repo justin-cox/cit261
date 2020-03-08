@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Chapter 9 The Window Object
+    // Browser Object Model (BOM) is a collection of properties and 
+    // methods that contain information about the browser and computer screen.
+    window.confirm("Do you want to continue?"); // requires user interaction before it can proceed
+
+    // window.location.href returns the URL of the page
+    // since it is read/write, you can also change the URL and reload the page.
+
+    // window.history allows you to check for previously visited sites before landing on the current page
+
+    // open a window to another URL with specified title, URL, and size
+    window.open('https://sitepoint.com','SitePoint','width=400,height=400,resizable=yes');
+
+    // you can move the window to different location on the screen
+    window.moveTo(0, 0);
+
+    // assign cookies
+    document.cookie = 'name=Justin';
+
+    // Chapter 14 HTML5 APIs
+    
+    // geolocation api can be used if first given permission by the user
+
+    // web workers allow you to complete tasks that take a little longer without disrupting
+    // the flow of the page
+
+    // websockets allow for constant open communication
+    
+</script>
+</html>
