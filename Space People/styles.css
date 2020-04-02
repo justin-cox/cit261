@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+    color: cornflowerblue;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+}
+
+img {
+    width: 256px;
+    height: 341px;
+}
+
+#astro-info {
+    display: flex;
+    justify-content: center;
+}
