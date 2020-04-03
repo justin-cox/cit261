@@ -3,46 +3,71 @@ console.log('working');
 // add a cool background picture
 document.body.style.backgroundImage = "url('pics/space-background.jpg')";
 
-function getSpacePeople() {
-    console.log('...getting space people...');
+// function getSpacePeople() {
+//     console.log('...getting space people...');
 
-    // get the data
-    fetch('http://api.open-notify.org/astros.json')
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        console.log(data);
-        displayNumAstros(data);
-        createAstros(data);
-    });
-}
+//     // get the data
+//     fetch('https://api.open-notify.org/astros.json')
+//     .then((response) => {
+//         return response.json();
+//     })
+//     .then((data) => {
+//         console.log(data);
+//         //displayNumAstros(data);
+//         createAstros(data);
+//     });
+// }
 
-function displayNumAstros(data) {
+var people = '{ "astros" : [' +
+'{ "name":"Andrew Morgan"},' +
+'{ "name":"Oleg Skripochka"},' +
+'{ "name":"Jessica Meir"} ]}';
+
+
+let spacePeople = JSON.parse(people);
+console.log(spacePeople);
+console.log(spacePeople.astros[0].name);
+displayNumAstros();
+createAstros();
+
+
+function displayNumAstros() {
     // use the api to get the number of the astros in space
-    const numAstros = `<h2>There are ${data.number} people in space right now!</h2>`;
+    // removed because of https issues
+    // const numAstros = `<h2>There are ${data.number} people in space right now!</h2>`;
+
+    const numAstros = `<h2>There are ${spacePeople.astros.length} people in space right now!</h2>`;
+
 
     document.body.innerHTML += numAstros;
 }
 
-function createAstros(data) {
+function createAstros() {
     // log the api data
-    console.log(data);
+    //console.log(data);
 
     let astroNames = [];
     let astros = [];
     
     // add the astros in the api to an array for easy access
-    for(let i = 0; i < data.number; i++) {
+    for(let i = 0; i < spacePeople.astros.length; i++) {
         console.log(i);
+        // astros += `
+        // <div>
+        // <p>${data.people[i].name}</p>
+        // <p>${data.people[i].name}</p>
+        // <p>${data.people[i].name}</p>
+        // </div>`;
+
         astros += `
         <div>
-        <p>${data.people[i].name}</p>
-        <p>${data.people[i].name}</p>
-        <p>${data.people[i].name}</p>
-        </div>`;
+            <p>${spacePeople.astros[i].name}</p>
+            <p>${spacePeople.astros[i].name}</p>
+            <p>${spacePeople.astros[i].name}</p>
+        </div>
+        `
 
-        astroNames[i] = data.people[i].name;
+        astroNames[i] = spacePeople.astros[i].name;
     }
     // now time to add the astros to the screen with their information
     addAstros(astros, astroNames);
